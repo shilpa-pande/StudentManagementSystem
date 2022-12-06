@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/base::Layout(~{::section})">
+<head>
+
+
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+
+
+
+
+<section class="registerbanner justify-content-center align-items-center">
+    <script src="/js/teacher/teacherRegisterForm.js"></script>
+
+    <div class="container">
+
+
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3" >
+
+                <div id="postResultDiv" align="center"></div>
+
+
+
+                <form class="form-horizontal" id="teacherRegisterForm"   method="post" >
+                    <h1 class="font-weight-bold"  style="text-align:center;padding:30px ;background-color:grey;text-shadow: 2px 2px 4px #000000;text-shadow: 2px 2px 4px rgb(255, 255, 255);">Teacher Registration Form</h1><hr>
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" >Teacher Name:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control"  placeholder="Enter Name"
+                                   name="teacherName" id="teacherName" required>
+                        </div>
+                    </div><br>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" >Subject:</label>
+                        <div class="col-sm-12">
+                            <input type="text" class="form-control" placeholder="Enter Subject  "
+                                   name="subject" id=subject required>
+                        </div>
+                    </div><br>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-12">
+                            <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        </div>
+                    </div>
+                    <hr>
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

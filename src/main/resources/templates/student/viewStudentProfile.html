@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="student/base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+<section>
+
+    <div class="container">
+
+
+            <h3 class="font-weight-bold"  style="color:red;text-align:center;padding:20px ;text-shadow: 2px 2px 4px rgb(255, 255, 255);">Welcome    <span th:text="${student.studentName}"></span></h3>
+
+
+
+        <div id="view">
+            <h1 class="text-center" style="color:red;text-align:center;padding:20px;background-color:blue;text-shadow: 2px 2px 4px #000000;">Your Profile</h1>
+            <table class="table table-hover">
+                <thead><tr><th>Id</th><th>Name</th><th>Mobile No</th><th>Email</th><th>Address</th></tr></thead>
+
+                <tbody><tr th:each="poster: ${student}"><td th:text="${poster.studentId}">ID</td><td th:text="${poster.studentName}">Name</td><td th:text="${poster.studentMobileNo}">Mobile No</td><td th:text="${poster.studentEmail}">Email</td><td th:text="${poster.studentAddress}">Address</td></tr></tbody>
+            </table>
+
+
+        </div>
+    </div>
+
+</section>
+
+</body>
+</html>
