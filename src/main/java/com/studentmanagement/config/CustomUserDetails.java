@@ -1,5 +1,6 @@
 package com.studentmanagement.config;
-import com.studentmanagement.entity.Student;
+
+import com.studentmanagement.entity.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -10,21 +11,21 @@ import java.util.List;
 public class CustomUserDetails implements UserDetails{
 	
 	private static final long serialVersionUID = 7259985727812852235L;
-	private Student student;
+	private User user;
 
 
 
 
-	public CustomUserDetails(Student student) {
+	public CustomUserDetails(User user) {
 		super();
-		this.student = student;
+		this.user = user;
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
 		
-		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(student.getRole().toString());
+		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(user.getRole().toString());
 
 
 
@@ -32,22 +33,22 @@ public class CustomUserDetails implements UserDetails{
 	}
 
 	
-	public int getId()
+	public Long getId()
 	{
-		return student.getStudentId();
+		return user.getUserId();
 	}
 
 	
 	@Override
 	public String getPassword() {
 		
-		return student.getStudentPassword();
+		return user.getPassword();
 	}
 
 	@Override
 	public String getUsername() {
 		
-		return student.getStudentEmail();
+		return user.getEmail();
 	}
 
 	@Override
@@ -75,7 +76,7 @@ public class CustomUserDetails implements UserDetails{
 	}
 
 	public String getStudentName() {
-		return this.student.getStudentName();
+		return this.user.getUsername();
 	}
 
 }

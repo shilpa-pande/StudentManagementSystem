@@ -1,7 +1,7 @@
 package com.studentmanagement.config;
 
-import com.studentmanagement.entity.Student;
-import com.studentmanagement.repository.StudentRepository;
+import com.studentmanagement.entity.User;
+import com.studentmanagement.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -11,20 +11,20 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 public class UserDetailServiceImpl implements UserDetailsService{
 
 	@Autowired
-	private StudentRepository studentRepository;
+	UserRepository userRepository;
 
 	@Override
-	public UserDetails loadUserByUsername(String studentEmail) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 
 
-		Student student=studentRepository.getStudentByStudentEmail(studentEmail);
+		User user=userRepository.getUserByEmail(email);
 
 
-		if(student==null) {
+		if(user==null) {
 
 			throw new UsernameNotFoundException("user 404");
 		}
-		return new CustomUserDetails(student);
+		return new CustomUserDetails(user);
 	}
 
 
