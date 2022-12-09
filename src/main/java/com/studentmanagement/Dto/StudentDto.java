@@ -4,6 +4,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import javax.persistence.Lob;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
@@ -31,6 +32,14 @@ public class StudentDto {
 
 
     private String studentAddress;
+
+    private String docName;
+
+    @Lob
+    private byte[] data;
+
+    public StudentDto(String fileName, byte[] bytes) {
+    }
 
 
     @Override

@@ -33,6 +33,13 @@ public class Student {
 
     private String studentAddress;
 
+
+    private String docName;
+
+    @Lob
+    private byte[] data;
+
+
     @ManyToOne
     private Class aClass;
 //
@@ -46,6 +53,7 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
 
     @Override
     public String toString() {

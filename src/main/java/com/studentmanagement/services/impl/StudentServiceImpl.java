@@ -2,6 +2,7 @@ package com.studentmanagement.services.impl;
 
 import com.studentmanagement.Dto.AppConstants;
 import com.studentmanagement.Dto.StudentDto;
+import com.studentmanagement.config.ImageUtility;
 import com.studentmanagement.entity.Class;
 import com.studentmanagement.entity.Role;
 import com.studentmanagement.entity.Student;
@@ -13,7 +14,11 @@ import com.studentmanagement.services.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -89,6 +94,19 @@ public class StudentServiceImpl implements StudentService {
         Student student=this.studentRepository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Student","Student id",studentId));
         this.studentRepository.delete(student);
 
+    }
+
+    public void saveAllFilesList(List<StudentDto> fileList) {
+        for (StudentDto fileModal : fileList) {
+            S save = studentRepository.save(fileModal);
+        }
+    }
+
+    @Override
+    public List<StudentDto> uploadStudentDoc(List<StudentDto> file, Integer studentId) throws IOException {
+        Student student = this.studentRepository.findById(studentId).orElseThrow(() -> new ResourceNotFoundException("Student", "Id", studentId));
+       
+        return Collections.singletonList(this.modelMapper.map(student, StudentDto.class));
     }
 
 

@@ -1,14 +1,18 @@
 package com.studentmanagement.restController;
 
 import com.studentmanagement.Dto.*;
+import com.studentmanagement.config.ImageUtility;
 import com.studentmanagement.services.StudentService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.validation.Valid;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -75,6 +79,30 @@ public class StudentController {
     {
         this.studentService.deleteStudent(studentId);
         return new ApiResponse("student is successfully deleted",true);
+    }
+
+    //upload document
+
+    @PostMapping("/doc/{studentId}")
+    public ResponseEntity<List<StudentDto>> uploadStudentDoc(@RequestParam("doc") MultipartFile[] files, @PathVariable Integer studentId) throws IOException {
+
+        List<StudentDto> fileList =new ArrayList<>();
+        for (MultipartFile file : files) {
+            String fileName = file.getOriginalFilename();
+            byte[] bytes = ImageUtility.compressImage(file.getBytes());
+
+            StudentDto fileModal = new StudentDto(fileName,bytes);
+
+            // Adding file into fileList
+            fileList.add(fileModal);
+        }
+
+
+        List<StudentDto> studentDtos = studentService.uploadStudentDoc(fileList, studentId);
+
+        return new ResponseEntity<>(studentDtos, HttpStatus.OK);
+
+
     }
 
 

@@ -1,7 +1,9 @@
 package com.studentmanagement.services;
 
 import com.studentmanagement.Dto.StudentDto;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 
 public interface StudentService {
@@ -20,5 +22,10 @@ public interface StudentService {
     List<StudentDto> getStudentByKeyword(String keyword);
 
     void deleteStudent(Integer studentId);
+
+
+    List<StudentDto>  uploadStudentDoc(List<StudentDto> file,Integer studentId) throws IOException;
+
+
 }
 
