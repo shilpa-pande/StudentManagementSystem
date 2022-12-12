@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="admin/base::Layout(~{::section})">
+<head>
+
+
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+
+
+
+
+<section class="registerbanner justify-content-center align-items-center">
+
+    <script src="/js/student/addDoc.js"></script>
+
+    <div class="container" >
+
+
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3" >
+
+                <div id="postResultDiv" align="center"></div>
+
+
+
+                <form class="form-horizontal" id="addDoc"   th:object=${student}>
+                    <h1 class="font-weight-bold"  style="text-align:center;padding:30px ;background-color:grey;text-shadow: 2px 2px 4px #000000;text-shadow: 2px 2px 4px rgb(255, 255, 255);">Upload Document</h1><hr>
+
+                    <label  class="form-label">Document</label>
+                    <input class="form-control" type="file" id="doc"/>
+
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-12">
+                            <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        </div>
+                    </div>
+                    <hr>
+
+                    <input type="hidden" th:value="${student.studentId}" name="studentId">
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

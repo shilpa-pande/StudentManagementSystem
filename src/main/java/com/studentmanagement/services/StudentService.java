@@ -1,10 +1,14 @@
 package com.studentmanagement.services;
 
 import com.studentmanagement.Dto.StudentDto;
+import com.studentmanagement.entity.Student;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.stream.Stream;
 
 public interface StudentService {
 
@@ -24,7 +28,21 @@ public interface StudentService {
     void deleteStudent(Integer studentId);
 
 
-    List<StudentDto>  uploadStudentDoc(List<StudentDto> file,Integer studentId) throws IOException;
+    StudentDto  uploadStudentDoc( MultipartFile file,  Integer studentId) throws IOException;
+
+      StudentDto getDoc(Integer studentId);
+
+    Stream<Student> getAllFiles();
+
+//    public void init();
+//
+//    public void save(MultipartFile file);
+//
+//    public Resource load(String filename);
+//
+//    public void deleteAll();
+//
+//    public Stream<Path> loadAll();
 
 
 }

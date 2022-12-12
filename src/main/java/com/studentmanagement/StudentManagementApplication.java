@@ -3,6 +3,7 @@ package com.studentmanagement;
 import com.studentmanagement.Dto.AppConstants;
 import com.studentmanagement.entity.Role;
 import com.studentmanagement.repository.RoleRepo;
+import com.studentmanagement.services.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -23,6 +24,8 @@ public class StudentManagementApplication implements CommandLineRunner {
 
 	@Autowired
 	private RoleRepo roleRepo;
+
+
 
 
 	@Bean
@@ -52,6 +55,8 @@ public class StudentManagementApplication implements CommandLineRunner {
 			e.printStackTrace();
 
 		}
+
+
 	}
 }
 

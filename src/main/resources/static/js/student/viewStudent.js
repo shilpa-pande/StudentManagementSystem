@@ -52,8 +52,11 @@ function pagedata(pageno){
 					'<td>' +
 					'<button type = "button" id = "delet' + item.studentId + '" class = "btn btn-danger btn-md delet" onclick = "delet(' + item.studentId + ')">Delete</button>' +
 					'</td>' +
-					 
-				
+
+					'<td id = "Upload' + item.studentId + '">' + '<a href="/admin/addDoc/'+ item.studentId + '"+" class = "btn btn-primary btn-md "">' + 'Upload Document' +
+                                    					'</td>' +
+                     '<td id = "Download' + item.studentId + '">' + '<a href="/students/doc/' + item.studentId + '"+" class = "btn btn-danger btn-md "">' + 'Download Document' +
+                                                         					'</td>' +
 					'</tr>';
 			});
 			$("#myTable>tbody").html(tableData);
@@ -182,7 +185,4 @@ $(document).delegate('#save', 'click', function() {
 
 
 });
-
-
-
 

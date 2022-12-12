@@ -32,6 +32,14 @@
 	
 }
 
+#addDoc{
+	min-height: 10px;
+      	padding:10px;
+        margin: 45px;
+        background-color:white;
+
+}
+
 #teacherRegisterForm{
 	min-height: 10px;
       	padding:10px;

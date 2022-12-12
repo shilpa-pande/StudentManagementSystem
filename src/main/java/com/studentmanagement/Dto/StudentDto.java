@@ -15,7 +15,7 @@ import javax.validation.constraints.Size;
 @Setter
 public class StudentDto {
 
-    private String studentId;
+    private Integer studentId;
 
     @NotEmpty
     @Size(min=4, message = "student must be min of 4 characters")
@@ -38,9 +38,14 @@ public class StudentDto {
     @Lob
     private byte[] data;
 
-    public StudentDto(String fileName, byte[] bytes) {
-    }
+    private String type;
 
+
+    public StudentDto(String docName, byte[] data, String type) {
+        this.docName = docName;
+        this.data = data;
+        this.type = type;
+    }
 
     @Override
     public String toString() {

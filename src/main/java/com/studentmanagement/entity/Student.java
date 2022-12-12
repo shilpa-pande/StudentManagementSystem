@@ -39,6 +39,11 @@ public class Student {
     @Lob
     private byte[] data;
 
+    private String type;
+
+
+//    private String docName;
+//    private String url;
 
     @ManyToOne
     private Class aClass;
@@ -53,6 +58,9 @@ public class Student {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+//    public Student(String fileName, byte[] bytes) {
+//    }
 
 
     @Override
