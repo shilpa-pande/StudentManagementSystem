@@ -2,7 +2,7 @@ package com.studentmanagement.services.impl;
 
 import com.studentmanagement.Dto.AppConstants;
 import com.studentmanagement.Dto.StudentDto;
-import com.studentmanagement.config.DocUtility;
+
 import com.studentmanagement.entity.Class;
 import com.studentmanagement.entity.Role;
 import com.studentmanagement.entity.Student;
@@ -156,7 +156,7 @@ public class StudentServiceImpl implements StudentService {
     public StudentDto uploadStudentDoc(MultipartFile file, Integer studentId) throws IOException {
         Student student=this.studentRepository.findById(studentId).orElseThrow(()-> new ResourceNotFoundException("Student","Id",studentId));
         student.setDocName(file.getOriginalFilename());
-         student.setData(DocUtility.compressImage(file.getBytes()));
+         student.setData(file.getBytes());
          student.setType(file.getContentType());
         Student updateStudent=this.studentRepository.save(student);
         return this.modelMapper.map(updateStudent,StudentDto.class);

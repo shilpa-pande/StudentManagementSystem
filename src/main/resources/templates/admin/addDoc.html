@@ -26,11 +26,11 @@
 
 
 
-                <form class="form-horizontal" id="addDoc"   th:object=${student}>
+                <form class="form-horizontal" id="submit"   th:object=${student} method="post"   enctype="multipart/form-data">
                     <h1 class="font-weight-bold"  style="text-align:center;padding:30px ;background-color:grey;text-shadow: 2px 2px 4px #000000;text-shadow: 2px 2px 4px rgb(255, 255, 255);">Upload Document</h1><hr>
 
                     <label  class="form-label">Document</label>
-                    <input class="form-control" type="file" id="doc"/>
+                    <input class="form-control" type="file" name="doc" id="doc"/>
 
                     <div class="form-group">
                         <div class="col-sm-offset-3 col-sm-12">
@@ -39,8 +39,9 @@
                     </div>
                     <hr>
 
-                    <input type="hidden" th:value="${student.studentId}" name="studentId">
+
                 </form>
+                <input type="hidden" th:value="${student.studentId}" id="studentId" name="studentId">
 
 
             </div>
