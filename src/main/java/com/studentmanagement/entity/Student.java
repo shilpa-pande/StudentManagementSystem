@@ -7,6 +7,8 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Entity
@@ -41,27 +43,18 @@ public class Student {
 
     private String type;
 
-
-//    private String docName;
-//    private String url;
-
     @ManyToOne
     private Class aClass;
-//
-//    @ManyToMany(cascade = CascadeType.ALL,fetch = FetchType.EAGER)
-//    @JoinTable(name="student_role",
-//            joinColumns = @JoinColumn(name = "student",referencedColumnName = "studentId"),
-//            inverseJoinColumns = @JoinColumn(name = "role",referencedColumnName = "roleId"))
-//    private Set<Role> roles=new HashSet<>();
+
 
     @JsonBackReference
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
 
-//    public Student(String fileName, byte[] bytes) {
-//    }
 
+    @OneToMany(mappedBy="student",cascade = CascadeType.ALL)
+    private List<Attendance> attendances=new ArrayList<>();
 
     @Override
     public String toString() {
