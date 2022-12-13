@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="teacher/base::Layout(~{::section})">
+<head>
+
+
+    <meta charset="UTF-8">
+    <title>Insert title here</title>
+</head>
+<body>
+
+
+
+
+<section class="registerbanner justify-content-center align-items-center">
+    <script src="/js/teacher/addAttendance.js"></script>
+
+    <div class="container" >
+
+
+        <div class="row">
+            <div class="col-md-9 col-md-offset-3" >
+
+                <div id="postResultDiv" align="center"></div>
+
+
+
+                <form class="form-horizontal" id="addAttendance"  method="post" >
+                    <h1 class="font-weight-bold"  style="text-align:center;padding:30px ;background-color:grey;text-shadow: 2px 2px 4px #000000;text-shadow: 2px 2px 4px rgb(255, 255, 255);">Add Attendance</h1><hr>
+
+
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" >Date:</label>
+                        <div class="col-sm-12">
+                            <input type="date" class="form-control"  placeholder="Enter Date" name="date" id="date" required >
+                        </div>
+                    </div><br>
+                    <div class="form-group">
+                        <label class="control-label col-sm-3" >Select Attendance Status:</label>
+                        <div class="col-sm-12">
+                            <select class="form-control"  name="attendance" id="attendance" required>
+                                <option value="">None</option>
+                                <option value="present">Present</option>
+                                <option value="absent">Absent</option>
+                            </select>
+                        </div>
+                    </div><br>
+                    <div class="form-group">
+                        <div class="col-sm-offset-3 col-sm-12">
+                            <button type="submit" class="btn btn-success btn-block">Submit</button>
+                        </div>
+                    </div>
+                    <hr>
+                </form>
+
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+</body>
+</html>

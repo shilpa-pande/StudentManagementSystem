@@ -9,7 +9,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -38,6 +40,10 @@ public class Teacher {
     @ManyToOne
     @JoinColumn(name = "role_id")
     private Role role;
+
+
+    @OneToMany(mappedBy="teacher",cascade = CascadeType.ALL)
+    private List<Student> students=new ArrayList<>();
 
 
     @ManyToMany(mappedBy = "teachers", cascade = { CascadeType.ALL })

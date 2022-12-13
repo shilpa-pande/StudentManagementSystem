@@ -56,6 +56,12 @@ public class Student {
     @OneToMany(mappedBy="student",cascade = CascadeType.ALL)
     private List<Attendance> attendances=new ArrayList<>();
 
+
+
+    @ManyToOne
+    private Teacher teacher;
+
+
     @Override
     public String toString() {
         return "Student{" +

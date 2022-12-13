@@ -35,13 +35,19 @@ public class StudentController {
         return new ResponseEntity<>(registerNewStudent, HttpStatus.CREATED);
     }
 
-    //api for creating students
+    //api for save students by class
     @PostMapping("/class/{classId}")
     public ResponseEntity<StudentDto> createUser(@Valid @RequestBody StudentDto studentDto, @PathVariable Integer classId) {
         StudentDto createStudentDto = this.studentService.createStudent(studentDto, classId);
         return new ResponseEntity<>(createStudentDto, HttpStatus.CREATED);
     }
 
+//create student by classId and teacherId
+    @PostMapping("/class/{classId}/teacher/{teacherId}")
+    public ResponseEntity<StudentDto> createPost(@RequestBody StudentDto studentDto, @PathVariable Integer classId, @PathVariable Integer teacherId){
+        StudentDto createStudent= this.studentService.createStudentByTeacher(studentDto,classId,teacherId);
+        return new ResponseEntity<>(createStudent, HttpStatus.CREATED);
+    }
 
     //update student by id
     @PutMapping("/{studentId}")

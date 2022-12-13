@@ -5,10 +5,12 @@ import com.studentmanagement.Dto.StudentDto;
 import com.studentmanagement.entity.Class;
 import com.studentmanagement.entity.Role;
 import com.studentmanagement.entity.Student;
+import com.studentmanagement.entity.Teacher;
 import com.studentmanagement.exceptions.ResourceNotFoundException;
 import com.studentmanagement.repository.ClassRepository;
 import com.studentmanagement.repository.RoleRepo;
 import com.studentmanagement.repository.StudentRepository;
+import com.studentmanagement.repository.TeacherRepository;
 import com.studentmanagement.services.StudentService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -28,6 +31,10 @@ public class StudentServiceImpl implements StudentService {
 
     @Autowired
     private ClassRepository classRepository;
+
+
+    @Autowired
+    private TeacherRepository teacherRepository;
 
     @Autowired
     private ModelMapper modelMapper;
@@ -53,6 +60,18 @@ public class StudentServiceImpl implements StudentService {
         Class aClass= this.classRepository.findById(classId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",classId));
         Student student=this.modelMapper.map(studentDto,Student.class);
         student.setAClass(aClass);
+        Student saveStudent=this.studentRepository.save(student);
+        return this.modelMapper.map(saveStudent,StudentDto.class);
+    }
+
+
+    @Override
+    public StudentDto createStudentByTeacher(StudentDto studentDto,Integer classId,Integer teacherId) {
+        Class aClass= this.classRepository.findById(classId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",classId));
+        Teacher teachers= this.teacherRepository.findById(teacherId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",teacherId));
+        Student student=this.modelMapper.map(studentDto,Student.class);
+        student.setAClass(aClass);
+        student.setTeacher(teachers);
         Student saveStudent=this.studentRepository.save(student);
         return this.modelMapper.map(saveStudent,StudentDto.class);
     }
