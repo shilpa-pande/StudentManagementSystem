@@ -13,7 +13,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/teacher")
+@RequestMapping("/teacherView")
 public class TeacherViewController {
 
     @Autowired

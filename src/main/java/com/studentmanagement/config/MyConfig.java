@@ -63,7 +63,7 @@ public class MyConfig extends WebSecurityConfigurerAdapter{
 		http.authorizeRequests()
 				.antMatchers("/admin/**").hasRole("ADMIN")
 				.antMatchers("/student/**").hasRole("STUDENT")
-				.antMatchers("teacher/**").hasRole("TEACHER")
+				.antMatchers("/teacherView/**").hasRole("TEACHER")
 				.antMatchers("/**").permitAll()
 				.anyRequest().authenticated()
 				.and().
