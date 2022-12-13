@@ -7,7 +7,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.List;
 
-public class CustomUserDetails implements UserDetails{
+public class CustomStudentDetails implements UserDetails{
 	
 	private static final long serialVersionUID = 7259985727812852235L;
 	private Student student;
@@ -15,7 +15,7 @@ public class CustomUserDetails implements UserDetails{
 
 
 
-	public CustomUserDetails(Student student) {
+	public CustomStudentDetails(Student student) {
 		super();
 		this.student = student;
 	}

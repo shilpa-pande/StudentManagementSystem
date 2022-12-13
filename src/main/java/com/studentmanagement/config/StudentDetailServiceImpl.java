@@ -8,7 +8,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 
-public class UserDetailServiceImpl implements UserDetailsService{
+public class StudentDetailServiceImpl implements UserDetailsService{
 
 	@Autowired
 	private StudentRepository studentRepository;
@@ -24,7 +24,7 @@ public class UserDetailServiceImpl implements UserDetailsService{
 
 			throw new UsernameNotFoundException("user 404");
 		}
-		return new CustomUserDetails(student);
+		return new CustomStudentDetails(student);
 	}
 
 

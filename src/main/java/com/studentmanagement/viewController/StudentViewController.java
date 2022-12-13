@@ -1,7 +1,7 @@
 package com.studentmanagement.viewController;
 
 
-import com.studentmanagement.config.CustomUserDetails;
+import com.studentmanagement.config.CustomStudentDetails;
 import com.studentmanagement.entity.Student;
 import com.studentmanagement.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class StudentViewController {
     }
 
     @RequestMapping("/viewStudentProfile")
-    private String viewHr( @AuthenticationPrincipal CustomUserDetails customUserDetails,Model model) {
+    private String viewHr(@AuthenticationPrincipal CustomStudentDetails customUserDetails, Model model) {
         String userEmail=customUserDetails.getUsername();
         System.out.println(userEmail);
         Student student=studentRepository.getStudentByStudentEmail(userEmail);

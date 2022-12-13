@@ -21,5 +21,9 @@ public class TeacherDto {
 
     private String subject;
 
+    private String teacherEmail;
+
+    private String teacherPassword;
+
     private Set<ClassDto> classes = new HashSet<>();
 }

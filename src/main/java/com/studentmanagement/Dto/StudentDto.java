@@ -8,6 +8,8 @@ import javax.persistence.Lob;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.Size;
+import java.util.ArrayList;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -39,6 +41,8 @@ public class StudentDto {
     private byte[] data;
 
     private String type;
+
+    private List<AttendanceDto> attendances=new ArrayList<>();
 
 
     public StudentDto(String docName, byte[] data, String type) {

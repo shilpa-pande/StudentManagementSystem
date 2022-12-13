@@ -44,7 +44,11 @@ public class StudentManagementApplication implements CommandLineRunner {
 			role1.setId(AppConstants.Student_USER);
 			role1.setName("ROLE_STUDENT");
 
-			List<Role> roles = List.of(role, role1);
+			Role role2 =new Role();
+			role2.setId(AppConstants.Teacher_USER);
+			role2.setName("ROLE_TEACHER");
+
+			List<Role> roles = List.of(role, role1,role2);
 			List<Role> result = this.roleRepo.saveAll(roles);
 
 			result.forEach(r->{

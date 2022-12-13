@@ -1,5 +1,6 @@
 package com.studentmanagement.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -26,6 +27,18 @@ public class Teacher {
 
 
     private String subject;
+
+    private String teacherEmail;
+
+
+    private String teacherPassword;
+
+
+    @JsonBackReference
+    @ManyToOne
+    @JoinColumn(name = "role_id")
+    private Role role;
+
 
     @ManyToMany(mappedBy = "teachers", cascade = { CascadeType.ALL })
     @JsonIgnore

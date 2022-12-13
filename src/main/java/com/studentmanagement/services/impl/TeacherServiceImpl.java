@@ -1,9 +1,14 @@
 package com.studentmanagement.services.impl;
+import com.studentmanagement.Dto.AppConstants;
+import com.studentmanagement.Dto.StudentDto;
 import com.studentmanagement.Dto.TeacherDto;
 import com.studentmanagement.entity.Class;
+import com.studentmanagement.entity.Role;
+import com.studentmanagement.entity.Student;
 import com.studentmanagement.entity.Teacher;
 import com.studentmanagement.exceptions.ResourceNotFoundException;
 import com.studentmanagement.repository.ClassRepository;
+import com.studentmanagement.repository.RoleRepo;
 import com.studentmanagement.repository.TeacherRepository;
 import com.studentmanagement.services.TeacherService;
 import org.modelmapper.ModelMapper;
@@ -28,6 +33,22 @@ public class TeacherServiceImpl implements TeacherService {
     @Autowired
     private ClassRepository classRepository;
 
+
+    @Autowired
+    private RoleRepo roleRepo;
+
+
+    @Override
+    public TeacherDto registerNewTeacher(TeacherDto teacherDto) {
+
+        Teacher teacher = this.modelMapper.map(teacherDto, Teacher.class);
+        Role role = this.roleRepo.findById(Long.valueOf(AppConstants.Teacher_USER)).get();
+        teacher.setRole(role);
+        Teacher savedTeacher=this.teacherRepository.save(teacher);
+        return this.modelMapper.map(savedTeacher,TeacherDto.class);
+    }
+
+
     @Override
     public TeacherDto createTeacher(TeacherDto teacherDto) {
         Teacher teacher = this.modelMapper.map(teacherDto, Teacher.class);
@@ -42,6 +63,8 @@ public class TeacherServiceImpl implements TeacherService {
         Teacher teacher = this.teacherRepository.findById(teacherId).orElseThrow(() -> new ResourceNotFoundException("Teacher", "Id", teacherId));
             teacher.setTeacherName(teacherDto.getTeacherName());
             teacher.setSubject(teacherDto.getSubject());
+            teacher.setTeacherEmail(teacherDto.getTeacherEmail());
+            teacher.setTeacherPassword(teacherDto.getTeacherPassword());
         Teacher updateTeacher= this.teacherRepository.save(teacher);
         return this.modelMapper.map(updateTeacher, TeacherDto.class);
     }

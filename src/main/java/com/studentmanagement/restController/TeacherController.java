@@ -1,6 +1,7 @@
 package com.studentmanagement.restController;
 
 import com.studentmanagement.Dto.ApiResponse;
+import com.studentmanagement.Dto.StudentDto;
 import com.studentmanagement.Dto.TeacherDto;
 import com.studentmanagement.services.TeacherService;
 
@@ -20,6 +21,13 @@ public class TeacherController {
 
     @Autowired
     private TeacherService teacherService;
+
+
+    @PostMapping("/register")
+    public ResponseEntity<TeacherDto> registerTeacher(@RequestBody TeacherDto teacherDto) {
+        TeacherDto registerNewTeacher = this.teacherService.registerNewTeacher(teacherDto);
+        return new ResponseEntity<>(registerNewTeacher, HttpStatus.CREATED);
+    }
 
     @PostMapping("/")
     public ResponseEntity<TeacherDto> createCategory(@Valid @RequestBody TeacherDto teacherDto){

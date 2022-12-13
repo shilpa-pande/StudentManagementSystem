@@ -1,10 +1,14 @@
 package com.studentmanagement.services;
 
+import com.studentmanagement.Dto.StudentDto;
 import com.studentmanagement.Dto.TeacherDto;
 
 import java.util.List;
 
 public interface TeacherService {
+
+
+    TeacherDto registerNewTeacher(TeacherDto teacherDto);
 
     TeacherDto createTeacher(TeacherDto teacherDto);
 
