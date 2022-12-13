@@ -14,6 +14,8 @@ $(document).ready(
 				var formData = {
 					teacherName : $("#teacherName").val(),
 					subject : $("#subject").val(),
+					teacherEmail:$("#teacherEmail").val(),
+					teacherPassword:$("#teacherPassword").val(),
 
 
 
@@ -23,7 +25,7 @@ $(document).ready(
 				$.ajax({
 					type : "POST",
 					contentType : "application/json",
-					url : "/teacher/",
+					url : "/teacher/register",
 					data : JSON.stringify(formData),
 					dataType : 'json',
 					success : function(data)
@@ -32,7 +34,7 @@ $(document).ready(
 		        	if (data != null)
 					{
 
-						 alert("class successfully added");
+						 alert("teacher successfully added");
                    		 window.location = "/admin/viewTeacher";
 					}
 					else

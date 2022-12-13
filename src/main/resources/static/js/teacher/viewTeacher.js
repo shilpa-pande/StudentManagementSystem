@@ -44,6 +44,10 @@ function pagedata(pageno){
 
 					'<td id = "Subject' + item.subject + '">' + item.subject + '</td>' +
 
+					'<td id = "Subject' + item.teacherEmail + '">' + item.teacherEmail + '</td>' +
+
+					'<td id = "Subject' + item.teacherPassword + '">' + item.teacherPassword + '</td>' +
+
 					'<td>' +
 					'<button type = "button" id = "edit' + item.teacherId + '" class = "btn btn-warning btn-md edit">Edit</button>' +
 					'</td>' +
@@ -119,14 +123,18 @@ $(document).delegate('.edit', 'click', function() {
 	var teacherId = parent.children("td:nth-child(1)");
 	var teacherName = parent.children("td:nth-child(2)");
 	var subject = parent.children("td:nth-child(3)");
+	var teacherEmail = parent.children("td:nth-child(4)");
+	var teacherPassword = parent.children("td:nth-child(5)");
 
 
 
-    var buttons = parent.children("td:nth-child(4)");
+    var buttons = parent.children("td:nth-child(6)");
 
 
 	teacherName.html("<input type='text' id='teacherName' value='" + teacherName.html() + "'/>");
 	subject.html("<input type='text' id='subject' value='" + subject.html() + "'/>");
+		teacherEmail.html("<input type='email' id='teacherEmail' value='" + teacherEmail.html() + "'/>");
+			teacherPassword.html("<input type='password' id='teacherPassword' value='" + teacherPassword.html() + "'/>");
 
 	buttons.html("<button id='save' class= 'btn btn-success'>Save</button>");
 
@@ -138,9 +146,10 @@ $(document).delegate('#save', 'click', function() {
    var teacherId = parent.children("td:nth-child(1)");
    	var teacherName = parent.children("td:nth-child(2)");
    	var subject = parent.children("td:nth-child(3)");
+    	var teacherEmail = parent.children("td:nth-child(4)");
+    	var teacherPassword = parent.children("td:nth-child(5)");
 
-
-    var buttons = parent.children("td:nth-child(4)");
+    var buttons = parent.children("td:nth-child(6)");
 
 
 
@@ -150,14 +159,15 @@ $(document).delegate('#save', 'click', function() {
 		url: "/teacher/"+teacherId[0].innerText,
 		data: JSON.stringify({
 			'teacherId': teacherId[0].innerText, 'teacherName': teacherName.children("input[type=text]").val(),'subject':subject.children("input[type=text]").val(),
-
+            'teacherEmail':teacherEmail.children("input[type=email]").val(),'teacherPassword':teacherPassword.children("input[type=password]").val(),
 
 		}),
 		cache: false,
 		success: function() {
 	    	teacherName.html(teacherName.children("input[type=text]").val());
 	    	subject.html(subject.children("input[type=text]").val());
-
+	    	teacherEmail.html(teacherEmail.children("input[type=email]").val());
+            teacherPassword.html(teacherPassword.children("input[type=password]").val());
 
 			buttons.html("<button class='btn btn-warning edit' id='" + teacherId[0].innerText + "'>Edit</button>");
 		},

@@ -22,7 +22,7 @@ public class CustomTeacherDetails implements UserDetails {
     }
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(teacher.getRole().toString());
+        SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(teacher.getRole().getName());
         return List.of(simpleGrantedAuthority) ;
     }
 

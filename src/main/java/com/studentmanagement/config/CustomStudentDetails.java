@@ -24,7 +24,7 @@ public class CustomStudentDetails implements UserDetails{
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 
 		
-		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(student.getRole().toString());
+		SimpleGrantedAuthority simpleGrantedAuthority = new SimpleGrantedAuthority(student.getRole().getName());
 
 
 
