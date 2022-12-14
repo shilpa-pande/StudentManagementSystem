@@ -2,6 +2,7 @@ package com.studentmanagement.restController;
 
 import com.studentmanagement.Dto.ApiResponse;
 import com.studentmanagement.Dto.AttendanceDto;
+import com.studentmanagement.entity.Attendance;
 import com.studentmanagement.services.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,9 +20,9 @@ public class AttedanceController {
 
 
     //apply attendance of student by studentId
-    @PostMapping("/{attendanceId}")
-    public ResponseEntity<AttendanceDto> createAttendance( @RequestBody AttendanceDto attendanceDto, @PathVariable Integer attendanceId) {
-        AttendanceDto createAttendance = this.attendanceService.createAttendance(attendanceDto,attendanceId);
+    @PostMapping("/{studentId}")
+    public ResponseEntity<AttendanceDto> createAttendance( @RequestBody AttendanceDto attendanceDto, @PathVariable Integer studentId) {
+        AttendanceDto createAttendance = this.attendanceService.createAttendance(attendanceDto,studentId);
         return new ResponseEntity<>(createAttendance, HttpStatus.CREATED);
     }
 

@@ -3,10 +3,13 @@ package com.studentmanagement.viewController;
 
 import com.studentmanagement.config.CustomStudentDetails;
 import com.studentmanagement.config.CustomTeacherDetails;
+import com.studentmanagement.entity.Attendance;
 import com.studentmanagement.entity.Class;
 import com.studentmanagement.entity.Student;
 import com.studentmanagement.entity.Teacher;
+import com.studentmanagement.repository.AttendanceRepository;
 import com.studentmanagement.repository.ClassRepository;
+import com.studentmanagement.repository.StudentRepository;
 import com.studentmanagement.repository.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
@@ -24,6 +27,14 @@ public class TeacherViewController {
 
     @Autowired
     ClassRepository classRepository;
+
+
+    @Autowired
+    StudentRepository studentRepository;
+
+
+    @Autowired
+    AttendanceRepository attendanceRepository;
 
     @RequestMapping("/index")
     private String teacherHome() {
@@ -56,6 +67,14 @@ public class TeacherViewController {
         model.addAttribute("aClass", aClass);
         return "teacher/viewStudent";
     }
+
+    @RequestMapping("/addAttendance/{studentId}")
+    public String addAttendance(Model model,@PathVariable("studentId") Integer studentId) {
+        Student student=studentRepository.getById(studentId);
+        model.addAttribute("student", student);
+        return "teacher/addAttendance";
+    }
+
 
 
 

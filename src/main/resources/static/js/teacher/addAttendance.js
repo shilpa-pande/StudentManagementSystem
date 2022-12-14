@@ -5,11 +5,14 @@ $(document).ready(
 			$("#addAttendance").submit(function(event) {
 				// Prevent the form from submitting via the browser.
 				event.preventDefault();
+
+
+
 				ajaxPost();
 			});
 
 			function ajaxPost() {
-
+             var studentId = $('#studentId').val();
 				// PREPARE FORM DATA
 				var formData = {
 					date : $("#date").val(),
@@ -24,7 +27,7 @@ $(document).ready(
 				$.ajax({
 					type : "POST",
 					contentType : "application/json",
-					url : "/attendance/register",
+					url : "/attendance/"+studentId,
 					data : JSON.stringify(formData),
 					dataType : 'json',
 					success : function(data)
@@ -34,12 +37,12 @@ $(document).ready(
 					{
 
 						 alert("attendance successfully added");
-                   		 window.location = "/teacher/addAttendance";
+                   		 window.location = "/teacherView/viewClass";
 					}
 					else
 					{
 						 alert("something went wrong");
-                   		 window.location = "/teacher/addAttendance";
+                   		 window.location = "/teacherView/viewClass";
 
 					}
 					},

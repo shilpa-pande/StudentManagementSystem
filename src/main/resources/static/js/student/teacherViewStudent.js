@@ -46,7 +46,10 @@ function pagedata(pageno){
 					'<td id = "Password' + item.studentPassword + '">' + item.studentPassword + '</td>' +
 					'<td id = "Address' + item.studentAddress + '">' + item.studentAddress + '</td>' +
 					                                        					'</td>' +
-                    					'</tr>';
+
+                      '<td id = "Attendance' + item.studentId + '">' + '<a href="/teacherView/addAttendance/' + item.studentId + '"+" class = "btn btn-danger btn-md "">' + 'Attendance' +
+                                                                             					'</td>' +
+                    '</tr>';
 			});
 			$("#myTable>tbody").html(tableData);
 }
