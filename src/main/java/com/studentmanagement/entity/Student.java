@@ -58,10 +58,6 @@ public class Student {
 
 
 
-    @ManyToOne
-    private Teacher teacher;
-
-
     @Override
     public String toString() {
         return "Student{" +

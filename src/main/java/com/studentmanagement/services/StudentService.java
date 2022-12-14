@@ -1,6 +1,7 @@
 package com.studentmanagement.services;
 
 import com.studentmanagement.Dto.StudentDto;
+import com.studentmanagement.Dto.TeacherDto;
 import com.studentmanagement.entity.Student;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -16,7 +17,7 @@ public interface StudentService {
 
     StudentDto createStudent(StudentDto studentDto, Integer classId);
 
-    StudentDto createStudentByTeacher(StudentDto studentDto,Integer classId, Integer teacherId);
+//    StudentDto createStudentByTeacher(StudentDto studentDto,Integer classId, Integer teacherId);
 
     StudentDto updateStudent(StudentDto studentDto, Integer studentId);
 
@@ -32,19 +33,13 @@ public interface StudentService {
 
     StudentDto  uploadStudentDoc( MultipartFile file,  Integer studentId) throws IOException;
 
-      StudentDto getDoc(Integer studentId);
+    StudentDto getDoc(Integer studentId);
 
     Stream<Student> getAllFiles();
 
-//    public void init();
-//
-//    public void save(MultipartFile file);
-//
-//    public Resource load(String filename);
-//
-//    public void deleteAll();
-//
-//    public Stream<Path> loadAll();
+
+    List<StudentDto> getStudentByClass(Integer classId);
+
 
 
 }

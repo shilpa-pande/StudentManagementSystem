@@ -46,4 +46,13 @@ public class Class {
     )
     Set<Teacher> teachers = new HashSet<Teacher>();
 
+
+    @Override
+    public String toString() {
+        return "Class{" +
+                "classId=" + classId +
+                ", className='" + className + '\'' +
+                ", classRoom='" + classRoom + '\'' +
+                '}';
+    }
 }

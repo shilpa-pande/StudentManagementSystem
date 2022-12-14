@@ -2,6 +2,7 @@ package com.studentmanagement.services.impl;
 
 import com.studentmanagement.Dto.AppConstants;
 import com.studentmanagement.Dto.StudentDto;
+import com.studentmanagement.Dto.TeacherDto;
 import com.studentmanagement.entity.Class;
 import com.studentmanagement.entity.Role;
 import com.studentmanagement.entity.Student;
@@ -65,16 +66,16 @@ public class StudentServiceImpl implements StudentService {
     }
 
 
-    @Override
-    public StudentDto createStudentByTeacher(StudentDto studentDto,Integer classId,Integer teacherId) {
-        Class aClass= this.classRepository.findById(classId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",classId));
-        Teacher teachers= this.teacherRepository.findById(teacherId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",teacherId));
-        Student student=this.modelMapper.map(studentDto,Student.class);
-        student.setAClass(aClass);
-        student.setTeacher(teachers);
-        Student saveStudent=this.studentRepository.save(student);
-        return this.modelMapper.map(saveStudent,StudentDto.class);
-    }
+//    @Override
+//    public StudentDto createStudentByTeacher(StudentDto studentDto,Integer classId,Integer teacherId) {
+//        Class aClass= this.classRepository.findById(classId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",classId));
+//        Teacher teachers= this.teacherRepository.findById(teacherId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",teacherId));
+//        Student student=this.modelMapper.map(studentDto,Student.class);
+//        student.setAClass(aClass);
+//        student.setTeacher(teachers);
+//        Student saveStudent=this.studentRepository.save(student);
+//        return this.modelMapper.map(saveStudent,StudentDto.class);
+//    }
 
 
 
@@ -135,6 +136,14 @@ public class StudentServiceImpl implements StudentService {
     public Stream<Student> getAllFiles() {
         Stream<Student> stream = studentRepository.findAll().stream();
         return stream;
+    }
+
+    @Override
+    public List<StudentDto> getStudentByClass(Integer classId) {
+        Class aClass=this.classRepository.findById(classId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",classId));
+        List<Student> students= studentRepository.findByaClass(aClass);
+        List<StudentDto> studentDtos= students.stream().map((student1) -> this.modelMapper.map(student1,StudentDto.class)).collect(Collectors.toList());
+        return studentDtos;
     }
 
 

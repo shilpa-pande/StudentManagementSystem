@@ -2,16 +2,12 @@ package com.studentmanagement.entity;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -42,13 +38,22 @@ public class Teacher {
     private Role role;
 
 
-    @OneToMany(mappedBy="teacher",cascade = CascadeType.ALL)
-    private List<Student> students=new ArrayList<>();
-
-
     @ManyToMany(mappedBy = "teachers", cascade = { CascadeType.ALL })
     @JsonIgnore
     private Set<Class> classes = new HashSet<>();
 
 
+    @Override
+    public String toString() {
+        return "Teacher{" +
+                "teacherId=" + teacherId +
+                ", teacherName='" + teacherName + '\'' +
+                ", subject='" + subject + '\'' +
+                ", teacherEmail='" + teacherEmail + '\'' +
+                ", teacherPassword='" + teacherPassword + '\'' +
+                ", role=" + role +
+
+                ", classes=" + classes +
+                '}';
+    }
 }

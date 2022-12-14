@@ -1,6 +1,7 @@
 package com.studentmanagement.services;
 
 import com.studentmanagement.Dto.ClassDto;
+import com.studentmanagement.Dto.TeacherDto;
 
 import java.util.List;
 
@@ -17,5 +18,7 @@ public interface ClassService {
     List<ClassDto> getAllClasses();
 
     void deleteClass(Integer classId);
+
+    List<ClassDto> getClassByTeacher(Integer teacherId);
 
 }

@@ -79,4 +79,13 @@ public class ClassServiceImpl implements  ClassService{
         Class aClass=this.classRepository.findById(classId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",classId));
         this.classRepository.delete(aClass);
     }
+
+    @Override
+    public List<ClassDto> getClassByTeacher(Integer teacherId) {
+        Teacher teacher=this.teacherRepository.findById(teacherId).orElseThrow(()->new ResourceNotFoundException("Teacher","Id",teacherId));
+        List<Class> aClass= classRepository.findByTeachers(teacher);
+        List<ClassDto> classDtos= aClass.stream().map((class1) -> this.modelMapper.map(class1,ClassDto.class)).collect(Collectors.toList());
+        return classDtos;
+
+    }
 }

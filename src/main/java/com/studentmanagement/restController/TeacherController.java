@@ -67,7 +67,7 @@ public class TeacherController {
 
 
     //get teachers by class
-    @GetMapping("/class/{classId}/")
+    @GetMapping("/class/{classId}")
     public ResponseEntity <List<TeacherDto>> getTeacherByClass(@PathVariable Integer classId){
         List<TeacherDto> teachers=this.teacherService.getTeacherByClass(classId);
         return new ResponseEntity<>(teachers, HttpStatus.OK);

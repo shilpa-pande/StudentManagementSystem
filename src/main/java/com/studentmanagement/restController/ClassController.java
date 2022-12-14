@@ -65,5 +65,15 @@ public class ClassController {
 
 
 
+    //get class by teacher
+    @GetMapping("/teacher/{teacherId}")
+    public ResponseEntity <List<ClassDto>> getClassByTeacher(@PathVariable Integer teacherId){
+        List<ClassDto> teachers=this.classService.getClassByTeacher(teacherId);
+        return new ResponseEntity<>(teachers, HttpStatus.OK);
+
+    }
+
+
+
 
 }

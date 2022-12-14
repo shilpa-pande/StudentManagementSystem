@@ -42,12 +42,12 @@ public class StudentController {
         return new ResponseEntity<>(createStudentDto, HttpStatus.CREATED);
     }
 
-//create student by classId and teacherId
-    @PostMapping("/class/{classId}/teacher/{teacherId}")
-    public ResponseEntity<StudentDto> createPost(@RequestBody StudentDto studentDto, @PathVariable Integer classId, @PathVariable Integer teacherId){
-        StudentDto createStudent= this.studentService.createStudentByTeacher(studentDto,classId,teacherId);
-        return new ResponseEntity<>(createStudent, HttpStatus.CREATED);
-    }
+////create student by classId and teacherId
+//    @PostMapping("/class/{classId}/teacher/{teacherId}")
+//    public ResponseEntity<StudentDto> createPost(@RequestBody StudentDto studentDto, @PathVariable Integer classId, @PathVariable Integer teacherId){
+//        StudentDto createStudent= this.studentService.createStudentByTeacher(studentDto,classId,teacherId);
+//        return new ResponseEntity<>(createStudent, HttpStatus.CREATED);
+//    }
 
     //update student by id
     @PutMapping("/{studentId}")
@@ -125,6 +125,14 @@ public class StudentController {
         return ResponseEntity.ok()
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileDB.getDocName() + "\"")
                 .body(fileDB.getData());
+    }
+
+
+    //get students by class
+    @GetMapping("/class/{classId}")
+    public ResponseEntity <List<StudentDto>> getStudentByClass(@PathVariable Integer classId){
+        List<StudentDto> student=this.studentService.getStudentByClass(classId);
+        return new ResponseEntity<>(student, HttpStatus.OK);
     }
 
 }

@@ -12,7 +12,7 @@ import java.util.Set;
 @Setter
 public class TeacherDto {
 
-    private Integer TeacherId;
+    private Integer teacherId;
 
 
     @Size(min=4, message = "teachers name must be min of 4 characters")
@@ -26,4 +26,17 @@ public class TeacherDto {
     private String teacherPassword;
 
     private Set<ClassDto> classes = new HashSet<>();
+
+
+    @Override
+    public String toString() {
+        return "TeacherDto{" +
+                "TeacherId=" + teacherId +
+                ", teacherName='" + teacherName + '\'' +
+                ", subject='" + subject + '\'' +
+                ", teacherEmail='" + teacherEmail + '\'' +
+                ", teacherPassword='" + teacherPassword + '\'' +
+                ", classes=" + classes +
+                '}';
+    }
 }
