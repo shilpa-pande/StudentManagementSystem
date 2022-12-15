@@ -15,7 +15,7 @@
     <script type="text/javascript"
             src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
     <div class="container-fluid" style="margin-top:60px;padding:40px;">
-        <h1 class="font-weight-bold"  style="text-align:center;padding:20px ;background-color:grey;text-shadow: 2px 2px 4px #000000;text-shadow: 2px 2px 4px rgb(255, 255, 255);">View Student</h1>
+        <h1 class="font-weight-bold"  style="text-align:center;padding:20px ;background-color:grey;text-shadow: 2px 2px 4px #000000;text-shadow: 2px 2px 4px rgb(255, 255, 255);">View Attendance</h1>
         <div id="view" style="overflow: auto;">
 
             <form class="form-inline" id="teacherViewAttendance"  th:object=${student} name="teacherViewAttendance" method="post">
@@ -29,6 +29,8 @@
                     <th>ID</th>
                     <th>Date</th>
                     <th>Attendance</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
 
 
                 </tr>
