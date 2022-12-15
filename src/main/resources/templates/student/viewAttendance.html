@@ -1,0 +1,58 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="student/base::Layout(~{::section})">
+<head>
+    <meta charset="UTF-8" />
+    <title>this is home page</title>
+</head>
+<body>
+<section>
+    <script src="/js/student/viewAttendance.js"></script>
+
+    <script
+            src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript"
+            src="https://cdn.datatables.net/v/dt/dt-1.10.25/datatables.min.js"></script>
+    <div class="container-fluid" style="margin-top:60px;padding:40px;">
+        <h1 class="font-weight-bold"  style="text-align:center;padding:20px ;background-color:grey;text-shadow: 2px 2px 4px #000000;text-shadow: 2px 2px 4px rgb(255, 255, 255);">View Attendance</h1>
+        <div id="view" style="overflow: auto;">
+
+            <form class="form-inline" id="studentViewAttendance"  th:object=${student} name="studentViewAttendance" method="post">
+
+            </form>
+            <input type="hidden" th:value="${student.studentId}" id="studentId" name="studentId">
+
+            <table class="table"id="myTable">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Date</th>
+                    <th>Attendance</th>
+
+
+                </tr>
+                </thead>
+
+                <tbody>
+
+
+                </tbody>
+
+            </table>
+            <div>
+                <button onclick='decPageNo()'>Prev</button>
+                <label id='customerPageNo'>1</label>
+                <button onclick='incPageNo()'>Next</button>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+</section>
+
+</body>
+</html>

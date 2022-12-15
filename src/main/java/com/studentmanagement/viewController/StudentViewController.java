@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
@@ -31,6 +32,17 @@ public class StudentViewController {
         System.out.println(student);
         return "student/viewStudentProfile";
     }
+
+    @RequestMapping("/viewAttendance")
+    public String viewAttendance(@AuthenticationPrincipal CustomStudentDetails customUserDetails, Model model) {
+        String userEmail=customUserDetails.getUsername();
+        System.out.println(userEmail);
+        Student student=studentRepository.getStudentByStudentEmail(userEmail);
+        model.addAttribute("student", student);
+        System.out.println(student);
+        return "student/viewAttendance";
+    }
+
 
 }
 
