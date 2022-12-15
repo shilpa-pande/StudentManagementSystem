@@ -71,4 +71,13 @@ public class AttendanceServiceImpl implements AttendanceService {
         Attendance attendance=this.attendanceRepository.findById(attendanceId).orElseThrow(()-> new ResourceNotFoundException("Attendance","Id",attendanceId));
         this.attendanceRepository.delete(attendance);
     }
+
+    @Override
+    public List<AttendanceDto> getAttendanceByStudent(Integer studentId) {
+        Student student=this.studentRepository.findById(studentId).orElseThrow(()-> new ResourceNotFoundException("Student","Id",studentId));
+        List<Attendance> attendances = attendanceRepository.findByStudent(student);
+        List<AttendanceDto> attendanceDtos= attendances.stream().map((attendance) -> this.modelMapper.map(attendance,AttendanceDto.class)).collect(Collectors.toList());
+        return attendanceDtos;
+
+    }
 }

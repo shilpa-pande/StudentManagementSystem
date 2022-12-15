@@ -2,7 +2,6 @@ package com.studentmanagement.restController;
 
 import com.studentmanagement.Dto.ApiResponse;
 import com.studentmanagement.Dto.AttendanceDto;
-import com.studentmanagement.entity.Attendance;
 import com.studentmanagement.services.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,6 +38,13 @@ public class AttedanceController {
     @GetMapping("/{attendanceId}")
     public ResponseEntity<AttendanceDto> getAttendanceById(@PathVariable Integer attendanceId){
         AttendanceDto attendanceDto=this.attendanceService.getAttendanceById(attendanceId);
+        return new ResponseEntity<>(attendanceDto, HttpStatus.OK);
+    }
+
+
+    @GetMapping("/student/{studentId}")
+    public ResponseEntity<List<AttendanceDto>> getAttendanceByStudent(@PathVariable Integer studentId){
+        List<AttendanceDto> attendanceDto=  this.attendanceService.getAttendanceByStudent(studentId);
         return new ResponseEntity<>(attendanceDto, HttpStatus.OK);
     }
 

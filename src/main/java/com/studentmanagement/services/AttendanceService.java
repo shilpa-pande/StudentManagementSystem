@@ -19,5 +19,5 @@ public interface AttendanceService {
 
     void deleteAttendance(Integer attendanceId);
 
-
+    List<AttendanceDto> getAttendanceByStudent(Integer studentId);
 }

@@ -75,6 +75,13 @@ public class TeacherViewController {
         return "teacher/addAttendance";
     }
 
+    @RequestMapping("/viewAttendance/{studentId}")
+    public String viewAttendance(Model model,@PathVariable("studentId") Integer studentId) {
+        Student student=studentRepository.getById(studentId);
+        model.addAttribute("student", student);
+        return "teacher/viewAttendance";
+    }
+
 
 
 

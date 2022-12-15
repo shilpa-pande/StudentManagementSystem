@@ -47,8 +47,10 @@ function pagedata(pageno){
 					'<td id = "Address' + item.studentAddress + '">' + item.studentAddress + '</td>' +
 					                                        					'</td>' +
 
-                      '<td id = "Attendance' + item.studentId + '">' + '<a href="/teacherView/addAttendance/' + item.studentId + '"+" class = "btn btn-danger btn-md "">' + 'Attendance' +
+                      '<td id = "Add Attendance' + item.studentId + '">' + '<a href="/teacherView/addAttendance/' + item.studentId + '"+" class = "btn btn-danger btn-md "">' + 'Add Attendance' +
                                                                              					'</td>' +
+                       '<td id = "View Attendance' + item.studentId + '">' + '<a href="/teacherView/viewAttendance/' + item.studentId + '"+" class = "btn btn-danger btn-md "">' + 'View Attendance' +
+                                                                                                   					'</td>' +
                     '</tr>';
 			});
 			$("#myTable>tbody").html(tableData);
