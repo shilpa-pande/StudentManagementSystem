@@ -15,9 +15,7 @@ public interface StudentService {
 
    StudentDto registerNewStudent(StudentDto studentDto);
 
-    StudentDto createStudent(StudentDto studentDto, Integer classId);
-
-//    StudentDto createStudentByTeacher(StudentDto studentDto,Integer classId, Integer teacherId);
+    StudentDto createStudent(StudentDto studentDto, Integer classId,Integer studentId);
 
     StudentDto updateStudent(StudentDto studentDto, Integer studentId);
 

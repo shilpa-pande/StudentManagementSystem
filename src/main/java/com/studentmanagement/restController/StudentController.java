@@ -29,25 +29,16 @@ public class StudentController {
     //register new user api
     @PostMapping("/register")
     public ResponseEntity<StudentDto> registerStudent(@RequestBody StudentDto studentDto) {
-
         StudentDto registerNewStudent = this.studentService.registerNewStudent(studentDto);
-
         return new ResponseEntity<>(registerNewStudent, HttpStatus.CREATED);
     }
 
     //api for save students by class
-    @PostMapping("/class/{classId}")
-    public ResponseEntity<StudentDto> createUser(@Valid @RequestBody StudentDto studentDto, @PathVariable Integer classId) {
-        StudentDto createStudentDto = this.studentService.createStudent(studentDto, classId);
+    @PostMapping("{studentId}/class/{classId}")
+    public ResponseEntity<StudentDto> createUser(@Valid @RequestBody StudentDto studentDto, @PathVariable Integer classId,@PathVariable Integer studentId) {
+        StudentDto createStudentDto = this.studentService.createStudent(studentDto,studentId, classId);
         return new ResponseEntity<>(createStudentDto, HttpStatus.CREATED);
     }
-
-////create student by classId and teacherId
-//    @PostMapping("/class/{classId}/teacher/{teacherId}")
-//    public ResponseEntity<StudentDto> createPost(@RequestBody StudentDto studentDto, @PathVariable Integer classId, @PathVariable Integer teacherId){
-//        StudentDto createStudent= this.studentService.createStudentByTeacher(studentDto,classId,teacherId);
-//        return new ResponseEntity<>(createStudent, HttpStatus.CREATED);
-//    }
 
     //update student by id
     @PutMapping("/{studentId}")

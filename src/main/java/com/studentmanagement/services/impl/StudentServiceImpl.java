@@ -2,11 +2,9 @@ package com.studentmanagement.services.impl;
 
 import com.studentmanagement.Dto.AppConstants;
 import com.studentmanagement.Dto.StudentDto;
-import com.studentmanagement.Dto.TeacherDto;
 import com.studentmanagement.entity.Class;
 import com.studentmanagement.entity.Role;
 import com.studentmanagement.entity.Student;
-import com.studentmanagement.entity.Teacher;
 import com.studentmanagement.exceptions.ResourceNotFoundException;
 import com.studentmanagement.repository.ClassRepository;
 import com.studentmanagement.repository.RoleRepo;
@@ -19,7 +17,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
@@ -47,7 +44,6 @@ public class StudentServiceImpl implements StudentService {
 
    @Override
     public StudentDto registerNewStudent(StudentDto studentDto) {
-
         Student student = this.modelMapper.map(studentDto, Student.class);
         student.setStudentPassword(student.getStudentPassword());
         Role role = this.roleRepo.findById(Long.valueOf(AppConstants.Student_USER)).get();
@@ -57,31 +53,22 @@ public class StudentServiceImpl implements StudentService {
     }
 
     @Override
-    public StudentDto createStudent(StudentDto studentDto,Integer classId) {
+    public StudentDto createStudent(StudentDto studentDto,Integer classId,Integer studentId) {
+        Student student=this.studentRepository.findById(studentId).orElseThrow(()-> new ResourceNotFoundException("Student","Id",studentId));
         Class aClass= this.classRepository.findById(classId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",classId));
-        Student student=this.modelMapper.map(studentDto,Student.class);
+        student.setStudentName(studentDto.getStudentName());
+        student.setStudentMobileNo(studentDto.getStudentMobileNo());
+        student.setStudentEmail(studentDto.getStudentEmail());
+        student.setStudentPassword(studentDto.getStudentPassword());
+        student.setStudentAddress(studentDto.getStudentAddress());
         student.setAClass(aClass);
         Student saveStudent=this.studentRepository.save(student);
         return this.modelMapper.map(saveStudent,StudentDto.class);
     }
 
 
-//    @Override
-//    public StudentDto createStudentByTeacher(StudentDto studentDto,Integer classId,Integer teacherId) {
-//        Class aClass= this.classRepository.findById(classId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",classId));
-//        Teacher teachers= this.teacherRepository.findById(teacherId).orElseThrow(()->new ResourceNotFoundException("Class","Class id",teacherId));
-//        Student student=this.modelMapper.map(studentDto,Student.class);
-//        student.setAClass(aClass);
-//        student.setTeacher(teachers);
-//        Student saveStudent=this.studentRepository.save(student);
-//        return this.modelMapper.map(saveStudent,StudentDto.class);
-//    }
-
-
-
     @Override
     public StudentDto updateStudent(StudentDto studentDto, Integer studentId) {
-
         Student student = this.studentRepository.findById(studentId).orElseThrow(() -> new ResourceNotFoundException("Student", "Id", studentId));
         student.setStudentName(studentDto.getStudentName());
         student.setStudentMobileNo(studentDto.getStudentMobileNo());
@@ -99,6 +86,8 @@ public class StudentServiceImpl implements StudentService {
         return this.modelMapper.map(student, StudentDto.class);
     }
 
+
+
     @Override
     public List<StudentDto> getAllStudents() {
         List<Student> students = this.studentRepository.findAll();
@@ -110,7 +99,6 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public void deleteStudent(Integer studentId) {
-
         Student student=this.studentRepository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Student","Student id",studentId));
        this.studentRepository.delete(student);
 
