@@ -5,4 +5,6 @@ import com.studentmanagement.entity.Class;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface AttendanceRepository extends JpaRepository<Attendance,Integer> {
+
+    public boolean existsByDate(String Date);
 }

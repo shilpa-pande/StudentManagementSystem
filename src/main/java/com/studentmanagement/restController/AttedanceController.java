@@ -21,7 +21,7 @@ public class AttedanceController {
 
     //apply attendance of student by studentId
     @PostMapping("/{studentId}")
-    public ResponseEntity<AttendanceDto> createAttendance( @RequestBody AttendanceDto attendanceDto, @PathVariable Integer studentId) {
+    public ResponseEntity<AttendanceDto> createAttendance( @RequestBody AttendanceDto attendanceDto, @PathVariable Integer studentId) throws ApiResponse {
         AttendanceDto createAttendance = this.attendanceService.createAttendance(attendanceDto,studentId);
         return new ResponseEntity<>(createAttendance, HttpStatus.CREATED);
     }

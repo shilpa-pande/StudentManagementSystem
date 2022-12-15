@@ -1,5 +1,6 @@
 package com.studentmanagement.services.impl;
 
+import com.studentmanagement.Dto.ApiResponse;
 import com.studentmanagement.Dto.AttendanceDto;
 import com.studentmanagement.entity.Attendance;
 import com.studentmanagement.entity.Student;
@@ -27,10 +28,17 @@ public class AttendanceServiceImpl implements AttendanceService {
     ModelMapper modelMapper;
 
     @Override
-    public AttendanceDto createAttendance(AttendanceDto attendanceDto,Integer studentId) {
+    public AttendanceDto createAttendance(AttendanceDto attendanceDto,Integer studentId) throws ApiResponse {
         Student student=this.studentRepository.findById(studentId).orElseThrow(()->new ResourceNotFoundException("Student","Id",studentId));
         Attendance attendance = this.modelMapper.map(attendanceDto, Attendance.class);
-       attendance.setStudent(student);
+        attendance.setStudent(student);
+        String date = attendanceDto.getDate();
+        boolean b = attendanceRepository.existsByDate(date);
+        System.out.println(b);
+        if(b==true){
+            throw new RuntimeException("already update attendance for this date");
+
+        }
         Attendance saveAttendance=this.attendanceRepository.save(attendance);
         return this.modelMapper.map(saveAttendance, AttendanceDto.class);
 
