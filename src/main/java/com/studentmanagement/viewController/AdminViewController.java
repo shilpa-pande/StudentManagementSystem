@@ -1,6 +1,9 @@
 package com.studentmanagement.viewController;
 import com.studentmanagement.entity.Student;
+import com.studentmanagement.entity.Teacher;
 import com.studentmanagement.repository.StudentRepository;
+import com.studentmanagement.repository.TeacherRepository;
+import com.studentmanagement.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +13,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 @RequestMapping("/admin")
 public class AdminViewController {
+
+    @Autowired
+    TeacherRepository teacherRepository;
+
+    @Autowired
+    TeacherService teacherService;
 
 
     @Autowired
@@ -65,7 +74,20 @@ public class AdminViewController {
 
 
 
+    @RequestMapping("/addClassToTeacher/{teacherId}")
+    public String addClassToTeacher(@PathVariable("teacherId") Integer teacherId, Model model) {
+        Teacher teacher=teacherRepository.getById(teacherId);
+        model.addAttribute("teacher", teacher);
+        return "admin/addClassToTeacher";
+    }
 
+
+    @RequestMapping("/assignClass")
+    public String assignClass(String className, Integer teacherId) {
+        teacherService.createTeacher(teacherId,className);
+        return "admin/viewTeacher";
+
+    }
 
 
 

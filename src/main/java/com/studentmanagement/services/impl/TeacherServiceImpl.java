@@ -1,5 +1,6 @@
 package com.studentmanagement.services.impl;
 import com.studentmanagement.Dto.AppConstants;
+import com.studentmanagement.Dto.ClassDto;
 import com.studentmanagement.Dto.StudentDto;
 import com.studentmanagement.Dto.TeacherDto;
 import com.studentmanagement.entity.Class;
@@ -14,8 +15,11 @@ import com.studentmanagement.services.TeacherService;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -50,13 +54,19 @@ public class TeacherServiceImpl implements TeacherService {
 
 
     @Override
-    public TeacherDto createTeacher(TeacherDto teacherDto) {
-        Teacher teacher = this.modelMapper.map(teacherDto, Teacher.class);
+    public TeacherDto createTeacher(@PathVariable("teacherId") Integer teacherId, String className) {
+        Teacher teacher= this.teacherRepository.findById(teacherId).orElseThrow(() -> new ResourceNotFoundException("Teacher", "Id", teacherId));
+        Class aClass = this.classRepository.getClassName(className);
+        if(aClass==null){
+            throw new ResourceNotFoundException("Class","className");
+        }
+        Set<Class> classes=new HashSet<>();
+        classes.add(aClass);
+        teacher.getClasses().add(aClass);
+        aClass.getTeachers().add(teacher);
         Teacher addTeacher = this.teacherRepository.save(teacher);
         return this.modelMapper.map(addTeacher, TeacherDto.class);
     }
-
-
 
     @Override
     public TeacherDto updateTeacher(TeacherDto teacherDto, Integer teacherId) {

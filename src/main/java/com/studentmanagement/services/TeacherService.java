@@ -1,5 +1,6 @@
 package com.studentmanagement.services;
 
+import com.studentmanagement.Dto.ClassDto;
 import com.studentmanagement.Dto.StudentDto;
 import com.studentmanagement.Dto.TeacherDto;
 
@@ -10,7 +11,7 @@ public interface TeacherService {
 
     TeacherDto registerNewTeacher(TeacherDto teacherDto);
 
-    TeacherDto createTeacher(TeacherDto teacherDto);
+    TeacherDto createTeacher( Integer teacherId, String className);
 
 
     TeacherDto updateTeacher(TeacherDto teacherDto, Integer teacherId);

@@ -1,6 +1,7 @@
 package com.studentmanagement.restController;
 
 import com.studentmanagement.Dto.ApiResponse;
+import com.studentmanagement.Dto.ClassDto;
 import com.studentmanagement.Dto.StudentDto;
 import com.studentmanagement.Dto.TeacherDto;
 import com.studentmanagement.services.TeacherService;
@@ -29,11 +30,11 @@ public class TeacherController {
         return new ResponseEntity<>(registerNewTeacher, HttpStatus.CREATED);
     }
 
-    @PostMapping("/")
-    public ResponseEntity<TeacherDto> createCategory(@Valid @RequestBody TeacherDto teacherDto){
-        TeacherDto teacher = this.teacherService.createTeacher(teacherDto);
-        return new ResponseEntity<>(teacher, CREATED);
-    }
+//    @PostMapping("/")
+//    public ResponseEntity<TeacherDto> createCategory(@Valid @RequestBody TeacherDto teacherDto){
+//        TeacherDto teacher = this.teacherService.createTeacher(teacherDto);
+//        return new ResponseEntity<>(teacher, CREATED);
+//    }
 
     //update teacher by id
     @PutMapping("/{teacherId}")

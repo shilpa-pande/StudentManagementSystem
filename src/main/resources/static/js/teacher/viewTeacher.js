@@ -54,6 +54,8 @@ function pagedata(pageno){
 					'<td>' +
 					'<button type = "button" id = "delet' + item.teacherId + '" class = "btn btn-danger btn-md delet" onclick = "delet(' + item.teacherId + ')">Delete</button>' +
 					'</td>' +
+					 '<td id = "Assign Class' + item.teacherId + '">' + '<a href="/admin/addClassToTeacher/' + item.teacherId + '"+" class = "btn btn-danger btn-md "">' + 'Assign Class' +
+                                                                             					'</td>' +
 
 
 					'</tr>';
