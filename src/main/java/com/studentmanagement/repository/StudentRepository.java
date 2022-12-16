@@ -1,6 +1,7 @@
 package com.studentmanagement.repository;
 
 import com.studentmanagement.entity.Class;
+import com.studentmanagement.entity.Role;
 import com.studentmanagement.entity.Student;
 import com.studentmanagement.entity.Teacher;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -23,5 +24,8 @@ public interface StudentRepository extends JpaRepository<Student,Integer> {
     Optional<Student> findBydocName(String docName);
 
     List<Student> findByaClass(Class aClass);
+
+
+    public List<Student> findByRole(Role role);
 
 }

@@ -57,15 +57,9 @@ public class StudentController {
 
     //get All Students
     @GetMapping("/")
-
-    public ResponseEntity<List<StudentDto>> getAllStudents(@RequestParam String keyword) {
-        if (keyword == null) {
-            return ResponseEntity.ok(this.studentService.getAllStudents());
-        } else {
-            return ResponseEntity.ok(this.studentService.getStudentByKeyword(keyword));
-        }
+    public ResponseEntity<List<StudentDto>> getAllStudents() {
+        return ResponseEntity.ok(this.studentService.getAllStudents());
     }
-
 
     // delete post by id
     @DeleteMapping("/{studentId}")

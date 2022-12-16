@@ -37,12 +37,12 @@ $(document).ready(
 					{
 
 						 alert("attendance successfully added");
-                   		 window.location = "/teacherView/viewClass";
+                   		 window.location = "/teacherView/viewStudent/"+studentId;
 					}
 					else
 					{
 						 alert("something went wrong");
-                   		 window.location = "/teacherView/viewClass";
+                   		 window.location = "/teacherView/viewStudent/"+studentId;
 
 					}
 					},

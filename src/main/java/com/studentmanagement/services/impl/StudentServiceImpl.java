@@ -90,7 +90,8 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public List<StudentDto> getAllStudents() {
-        List<Student> students = this.studentRepository.findAll();
+       Role role=roleRepo.findById(Long.valueOf("502")).orElseThrow(()->new ResourceNotFoundException("Role","Id",502));
+        List<Student> students = this.studentRepository.findByRole(role);
         List<StudentDto> studentDtos = students.stream().map((student) -> this.modelMapper.map(student, StudentDto.class)).collect(Collectors.toList());
         return studentDtos;
     }
